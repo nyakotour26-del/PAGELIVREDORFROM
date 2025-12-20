@@ -5,43 +5,123 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Livre d'or - Ny ako Madagascar Europe Tour 2026</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Cormorant+Garamond:wght@400;600;700&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: linear-gradient(to bottom, #FFD700, #FFEC8B);
-            color: #333;
+            background: url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #5a3921;
             line-height: 1.5;
             min-height: 100vh;
             display: flex;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+        }
+
+        /* Couche de superposition pour améliorer la lisibilité */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 253, 242, 0.92);
+            z-index: -1;
+        }
+
+        /* Fleurs décoratives */
+        .flower-decoration {
+            position: fixed;
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .flower-1 {
+            top: 5%;
+            left: 3%;
+            font-size: 2.5rem;
+            color: #8B4513;
+            transform: rotate(-15deg);
+        }
+
+        .flower-2 {
+            top: 10%;
+            right: 5%;
+            font-size: 2rem;
+            color: #DAA520;
+            transform: rotate(20deg);
+        }
+
+        .flower-3 {
+            bottom: 15%;
+            left: 5%;
+            font-size: 2.2rem;
+            color: #8B4513;
+            transform: rotate(10deg);
+        }
+
+        .flower-4 {
+            bottom: 8%;
+            right: 8%;
+            font-size: 1.8rem;
+            color: #DAA520;
+            transform: rotate(-25deg);
         }
 
         /* === DRAPEAUX VERTICAUX À GAUCHE === */
         .flags-column {
-            width: 80px;
-            background: linear-gradient(to bottom, #8B4513, #D2691E);
+            width: 75px;
+            background: linear-gradient(to bottom, rgba(139, 69, 19, 0.9), rgba(210, 105, 30, 0.9));
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 25px 10px;
-            box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2);
-            border-right: 3px solid #FFD700;
+            padding: 20px 8px;
+            box-shadow: 3px 0 12px rgba(0, 0, 0, 0.15);
+            border-right: 2px solid #FFD700;
             flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+        
+        .flags-column::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center center;
+            background-size: cover;
+            opacity: 0.1;
+            z-index: -1;
         }
         
         .flags-column .flag {
-            width: 55px;
-            height: 40px;
-            border-radius: 4px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-            margin-bottom: 20px;
+            width: 50px;
+            height: 35px;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            margin-bottom: 15px;
             border: 2px solid #FFD700;
             object-fit: cover;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .flags-column .flag:hover {
+            transform: scale(1.08);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 10;
         }
         
         .flags-column .flag:last-child {
@@ -54,7 +134,8 @@
             display: flex;
             flex-direction: column;
             overflow-y: auto;
-            padding: 15px;
+            padding: 12px;
+            z-index: 1;
         }
 
         /* === ÉCRAN DE SÉLECTION DE LANGUE === */
@@ -63,68 +144,111 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            background: url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center;
+            background-size: cover;
+            position: relative;
+        }
+
+        .language-selector::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 253, 242, 0.85);
         }
 
         .language-box {
-            background-color: white;
+            background-color: #fffef7;
             border-radius: 20px;
-            padding: 40px 30px;
+            padding: 35px 30px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
+            box-shadow: 0 12px 30px rgba(139, 69, 19, 0.2);
+            max-width: 480px;
             width: 100%;
-            border: 5px solid #FFD700;
+            border: 2px solid #DAA520;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .language-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(to right, #FFD700, #8B4513, #DAA520);
         }
 
         .language-box h1 {
             color: #8B4513;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
             font-size: 2rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
         .language-box p {
-            margin-bottom: 30px;
-            color: #555;
+            margin-bottom: 8px;
+            color: #5a3921;
             font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .language-box .blessing {
+            font-style: italic;
+            margin-top: 12px;
+            font-size: 1.1rem;
+            color: #8B4513;
+            font-weight: 500;
         }
 
         .language-buttons {
             display: flex;
             flex-direction: column;
             gap: 15px;
+            margin-top: 25px;
         }
 
         .lang-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            background: white;
+            background: #fffef7;
             border: 2px solid #DAA520;
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 16px;
+            padding: 18px 20px;
             text-decoration: none;
-            color: #333;
+            color: #5a3921;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 12px rgba(218, 165, 32, 0.15);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .lang-btn:hover {
-            background: linear-gradient(to right, #FFD700, #DAA520);
-            color: white;
-            transform: scale(1.02);
+            background: linear-gradient(to right, #fff9e6, #FFEC8B);
+            color: #8B4513;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(218, 165, 32, 0.25);
+            border-color: #8B4513;
         }
 
         .lang-btn i {
-            font-size: 1.8rem;
-            margin-right: 15px;
+            font-size: 1.6rem;
+            margin-right: 12px;
             color: #8B4513;
         }
 
         .lang-btn span {
-            font-size: 1.3rem;
-            font-weight: bold;
+            font-size: 1.2rem;
+            font-weight: 500;
         }
 
         /* === PAGE PRINCIPALE === */
@@ -136,7 +260,7 @@
         .container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 15px;
+            padding: 12px;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -146,76 +270,180 @@
         .main-content-row {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            margin-bottom: 20px;
+            gap: 15px;
+            margin-bottom: 15px;
         }
         
         /* === TITRE À GAUCHE (DESKTOP) === */
         .title-section {
             width: 100%;
             text-align: center;
-            padding: 15px;
-            background: linear-gradient(to right, #FFD700, #FFEC8B);
-            border-radius: 15px;
-            border: 4px solid #DAA520;
-            box-shadow: 0 5px 15px rgba(218, 165, 32, 0.2);
-            margin-bottom: 20px;
+            padding: 16px;
+            background: rgba(255, 253, 242, 0.95);
+            border-radius: 16px;
+            border: 2px solid #DAA520;
+            box-shadow: 0 6px 18px rgba(139, 69, 19, 0.12);
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .title-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #FFD700, #8B4513, #DAA520);
         }
         
         .main-title {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #8B4513;
-            text-shadow: 1px 1px 0 #FFD700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
             margin-bottom: 8px;
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
+            padding: 12px 15px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
             display: inline-block;
             border: 2px solid #DAA520;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            box-shadow: 0 3px 8px rgba(139, 69, 19, 0.1);
         }
         
         .subtitle {
             font-size: 1.2rem;
             color: #8B4513;
-            font-weight: bold;
-            margin-bottom: 5px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            font-family: 'Montserrat', sans-serif;
         }
         
         .tour-subtitle {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: #8B4513;
             font-style: italic;
+            margin-bottom: 12px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .cross-icon {
+            color: #8B4513;
+            text-align: center;
+            margin: 8px 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .theme {
+            font-size: 1.1rem;
+            color: #8B4513;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: rgba(255, 215, 0, 0.15);
+            border-radius: 10px;
+            font-weight: bold;
+            font-family: 'Dancing Script', cursive;
+            border: 1px dashed #DAA520;
         }
         
         /* === INSTRUCTIONS ET CONTENU === */
         .content-section {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 18px;
         }
         
         .instructions {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 15px;
-            border-left: 5px solid #FFD700;
-            border-right: 5px solid #FFD700;
+            background: rgba(255, 253, 242, 0.95);
+            padding: 18px;
+            border-radius: 16px;
+            box-shadow: 0 6px 18px rgba(139, 69, 19, 0.12);
+            text-align: center;
+            position: relative;
+            border: 2px solid #DAA520;
+            overflow: hidden;
+        }
+
+        .instructions::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #FFD700, #8B4513, #DAA520);
         }
         
         .instructions h2 {
             color: #8B4513;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             font-size: 1.5rem;
-            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
         }
         
         .instructions p {
-            color: #5D4037;
-            font-size: 1rem;
-            line-height: 1.6;
+            color: #5a3921;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 8px;
+            font-family: 'Montserrat', sans-serif;
         }
         
-        /* === FORMULAIRES === */
+        .share-ideas {
+            background-color: rgba(255, 253, 242, 0.95);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            text-align: left;
+            border-left: 3px solid #8B4513;
+            box-shadow: 0 4px 10px rgba(139, 69, 19, 0.1);
+        }
+        
+        .share-ideas h4 {
+            color: #8B4513;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .share-ideas h4 i {
+            color: #DAA520;
+        }
+        
+        .ideas-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        
+        .idea-tag {
+            background-color: rgba(255, 253, 242, 0.95);
+            color: #5a3921;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid #DAA520;
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(139, 69, 19, 0.1);
+        }
+        
+        .idea-tag:hover {
+            background-color: #FFEC8B;
+            transform: translateY(-2px);
+        }
+        
+        /* === FORMULAIRES - CADRE STYLÉ COMME CERTIFICAT === */
         .form-section {
             display: flex;
             flex-direction: column;
@@ -224,134 +452,372 @@
         .options-title {
             text-align: center;
             color: #8B4513;
-            font-size: 1.6rem;
-            margin: 0 0 15px;
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
+            font-size: 1.5rem;
+            margin: 0 0 12px;
+            padding: 12px;
+            background-color: rgba(255, 253, 242, 0.95);
+            border-radius: 12px;
             border: 2px solid #DAA520;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(139, 69, 19, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .options-title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, #FFD700, #8B4513, #DAA520);
+        }
+        
+        .comparison-highlight {
+            text-align: center;
+            color: #8B4513;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 0 15px;
+            padding: 12px;
+            background-color: rgba(255, 253, 242, 0.95);
+            border-radius: 10px;
+            border: 2px solid #8B4513;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 3px 8px rgba(139, 69, 19, 0.1);
+            line-height: 1.5;
         }
         
         .form-options {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 18px;
+            margin-bottom: 15px;
         }
         
         .option-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 8px 20px rgba(218, 165, 32, 0.15);
-            border-top: 4px solid #DAA520;
-            border-bottom: 4px solid #FFD700;
-            transition: transform 0.3s;
+            background: rgba(255, 253, 242, 0.95);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid;
+            z-index: 1;
+        }
+
+        /* Cadre de certificat stylé avec coins décoratifs */
+        .option-card::before, .option-card::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            border: 2px solid #DAA520;
+            z-index: 2;
+        }
+
+        .option-card::before {
+            top: 10px;
+            left: 10px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .option-card::after {
+            bottom: 10px;
+            right: 10px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .option-card .corner-top-right {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 25px;
+            height: 25px;
+            border: 2px solid #DAA520;
+            border-left: none;
+            border-bottom: none;
+            z-index: 2;
+        }
+
+        .option-card .corner-bottom-left {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            width: 25px;
+            height: 25px;
+            border: 2px solid #DAA520;
+            border-right: none;
+            border-top: none;
+            z-index: 2;
+        }
+        
+        /* Bordure différente pour chaque option */
+        .option-card.no-photo-option {
+            border-color: #8B4513;
+        }
+        
+        .option-card.with-photo-option {
+            border-color: #DAA520;
         }
         
         .option-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(139, 69, 19, 0.25);
         }
         
         .option-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
         }
         
-        .language-badge {
-            font-size: 0.95rem;
-            font-weight: bold;
-            color: #8B4513;
-            padding: 6px 12px;
-            border-radius: 20px;
-            background: #FFD700;
-            border: 1px solid #DAA520;
+        /* MODIFICATION: Type de formulaire - Style plus clair pour personnes âgées */
+        .option-type-box {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 15px;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
         }
         
-        .photo-badge {
-            font-size: 0.85rem;
-            padding: 5px 10px;
-            border-radius: 20px;
-            background-color: #8B4513;
-            color: #FFD700;
-            font-weight: bold;
-        }
-        
-        .photo-badge.no-photo {
-            background-color: #5D4037;
+        .no-photo-type {
+            background: linear-gradient(135deg, #5D4037 0%, #8B4513 100%);
             color: #FFEC8B;
+            border: 3px solid #8B4513;
+            box-shadow: 0 4px 10px rgba(93, 64, 55, 0.3);
+        }
+        
+        .with-photo-type {
+            background: linear-gradient(135deg, #DAA520 0%, #FFD700 100%);
+            color: #8B4513;
+            border: 3px solid #DAA520;
+            box-shadow: 0 4px 10px rgba(139, 69, 19, 0.3);
+        }
+        
+        .option-type-icon {
+            font-size: 1.6rem;
+        }
+        
+        .connection-status {
+            font-size: 1rem;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 10px auto;
+            display: inline-block;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 280px;
+            width: 100%;
+            text-align: center;
+            border: 2px solid;
+        }
+        
+        .no-connection-required {
+            background-color: rgba(94, 185, 94, 0.25);
+            color: #2E7D32;
+            border-color: #4CAF50;
+        }
+        
+        .connection-required {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: #C62828;
+            border-color: #F44336;
         }
         
         .option-card h3 {
             color: #8B4513;
             margin-bottom: 10px;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.3;
+            padding: 10px 0;
         }
         
-        .option-card p {
-            margin-bottom: 12px;
-            color: #5D4037;
+        .option-description {
+            text-align: center;
+            color: #5a3921;
+            font-size: 1.05rem;
             line-height: 1.5;
-            font-size: 0.95rem;
+            margin-bottom: 15px;
+            padding: 0 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .option-highlight {
+            color: #8B4513;
+            font-weight: 600;
+            margin: 15px 0;
+            padding: 12px;
+            background-color: rgba(255, 253, 242, 0.95);
+            border-radius: 10px;
+            border-left: 4px solid #8B4513;
+            border-right: 4px solid #8B4513;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 2px 5px rgba(139, 69, 19, 0.1);
+            line-height: 1.5;
+            text-align: center;
         }
         
         .features {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            background-color: rgba(255, 253, 242, 0.7);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #DAA520;
+        }
+        
+        .features-title {
+            color: #8B4513;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
         
         .feature {
             display: flex;
-            align-items: center;
-            margin-bottom: 6px;
-            color: #5D4037;
-            font-size: 0.9rem;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            color: #5a3921;
+            font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.4;
         }
         
         .feature i {
             color: #DAA520;
             margin-right: 10px;
-            min-width: 16px;
+            min-width: 18px;
+            font-size: 1rem;
+            margin-top: 2px;
         }
         
         .btn {
             display: block;
+            padding: 14px 22px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            border: 3px solid;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::after {
+            left: 100%;
+        }
+        
+        .no-photo-btn {
+            background: linear-gradient(to right, #5D4037, #8B4513);
+            color: #FFEC8B;
+            border-color: #5D4037;
+        }
+        
+        .with-photo-btn {
             background: linear-gradient(to right, #DAA520, #FFD700);
             color: #8B4513;
-            padding: 12px 25px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            text-align: center;
-            transition: all 0.3s;
-            border: 2px solid #8B4513;
-            font-size: 1rem;
-            margin-top: 10px;
+            border-color: #8B4513;
         }
         
         .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .no-photo-btn:hover {
+            background: linear-gradient(to right, #8B4513, #5D4037);
+        }
+        
+        .with-photo-btn:hover {
             background: linear-gradient(to right, #8B4513, #DAA520);
             color: #FFD700;
-            transform: scale(1.03);
+        }
+        
+        .btn-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
         }
         
         /* === CONTACTS === */
         .contacts-section {
             text-align: center;
-            margin: 20px 0;
+            margin: 15px 0;
             padding: 15px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
+            background-color: rgba(255, 253, 242, 0.95);
+            border-radius: 16px;
             border: 2px solid #DAA520;
+            box-shadow: 0 6px 18px rgba(139, 69, 19, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contacts-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #FFD700, #8B4513, #DAA520);
         }
         
         .contacts-section h3 {
             color: #8B4513;
             margin-bottom: 12px;
             font-size: 1.3rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
         }
         
         .contact-links {
@@ -368,119 +834,301 @@
             gap: 10px;
             color: #8B4513;
             text-decoration: none;
-            font-weight: bold;
-            padding: 10px 15px;
-            border-radius: 20px;
-            background-color: rgba(255, 215, 0, 0.3);
-            transition: all 0.3s;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 25px;
+            background-color: rgba(255, 253, 242, 0.95);
+            transition: all 0.3s ease;
             width: 100%;
-            max-width: 280px;
+            max-width: 250px;
+            border: 2px solid #DAA520;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 4px 10px rgba(139, 69, 19, 0.1);
         }
         
         .contact-link:hover {
-            background-color: rgba(218, 165, 32, 0.5);
+            background-color: #FFEC8B;
             transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(139, 69, 19, 0.2);
         }
         
         .contact-link i {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
         
         /* === LIEN RETOUR === */
         .back-link {
             text-align: center;
-            margin-top: 15px;
-            margin-bottom: 10px;
+            margin-top: 12px;
+            margin-bottom: 8px;
         }
         
         .back-link a {
             color: #8B4513;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1rem;
-            padding: 10px 15px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 8px 15px;
             border-radius: 20px;
-            background-color: rgba(255, 215, 0, 0.3);
-            transition: all 0.3s;
+            background-color: rgba(255, 253, 242, 0.95);
+            transition: all 0.3s ease;
             display: inline-block;
+            border: 2px solid #DAA520;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 4px 10px rgba(139, 69, 19, 0.1);
         }
         
         .back-link a:hover {
-            background-color: rgba(218, 165, 32, 0.5);
+            background-color: #FFEC8B;
             transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(139, 69, 19, 0.2);
         }
         
-        /* === VERSION DESKTOP (768px et plus) === */
-        @media (min-width: 768px) {
+        /* === VERSION TABLETTE (600px à 1023px) === */
+        @media (min-width: 600px) and (max-width: 1023px) {
             .flags-column {
-                width: 100px;
-                padding: 40px 15px;
+                width: 80px;
+                padding: 25px 10px;
             }
             
             .flags-column .flag {
-                width: 70px;
-                height: 45px;
-                margin-bottom: 25px;
+                width: 55px;
+                height: 40px;
+                margin-bottom: 20px;
             }
             
             .main-content {
-                padding: 25px;
+                padding: 15px;
             }
             
             .container {
+                padding: 15px;
+                max-width: 100%;
+            }
+            
+            .main-content-row {
+                flex-direction: column;
+                gap: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .title-section {
                 padding: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .main-title {
+                font-size: 2rem;
+                padding: 15px 20px;
+            }
+            
+            .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .tour-subtitle {
+                font-size: 1.05rem;
+            }
+            
+            .theme {
+                font-size: 1.3rem;
+                margin-top: 12px;
+                padding: 12px;
+            }
+            
+            .instructions {
+                padding: 20px;
+            }
+            
+            .instructions h2 {
+                font-size: 1.6rem;
+            }
+            
+            .instructions p {
+                font-size: 1rem;
+            }
+            
+            .share-ideas {
+                padding: 18px;
+            }
+            
+            .comparison-highlight {
+                font-size: 1.2rem;
+                padding: 15px;
+            }
+            
+            /* FORMULAIRES EN PLEINE LARGEUR SUR TABLETTE */
+            .form-options {
+                flex-direction: row;
+                gap: 20px;
+            }
+            
+            .option-card {
+                flex: 1;
+                min-height: 500px;
+                display: flex;
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            .option-type-box {
+                font-size: 1.5rem;
+                padding: 10px;
+                margin-bottom: 20px;
+            }
+            
+            .option-card h3 {
+                font-size: 1.5rem;
+                min-height: 70px;
+            }
+            
+            .option-description {
+                font-size: 1.1rem;
+                flex-grow: 1;
+            }
+            
+            .option-highlight {
+                font-size: 1.05rem;
+                padding: 15px;
+            }
+            
+            .features {
+                margin-bottom: 20px;
+                padding: 18px;
+            }
+            
+            .features-title {
+                font-size: 1.2rem;
+            }
+            
+            .feature {
+                font-size: 1rem;
+            }
+            
+            .connection-status {
+                font-size: 1.05rem;
+                padding: 10px 18px;
+            }
+            
+            .options-title {
+                font-size: 1.7rem;
+                margin-bottom: 15px;
+            }
+            
+            .btn {
+                padding: 16px 24px;
+                font-size: 1.15rem;
+            }
+            
+            .contact-links {
+                flex-direction: row;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .contact-link {
+                width: auto;
+                min-width: 180px;
+                padding: 12px 18px;
+            }
+
+            .language-box {
+                padding: 30px 25px;
+            }
+            
+            .lang-btn {
+                padding: 15px 18px;
+            }
+        }
+        
+        /* === VERSION DESKTOP (1024px et plus) === */
+        @media (min-width: 1024px) {
+            .flags-column {
+                width: 85px;
+                padding: 30px 12px;
+            }
+            
+            .flags-column .flag {
+                width: 60px;
+                height: 40px;
+                margin-bottom: 20px;
+            }
+            
+            .main-content {
+                padding: 15px;
+            }
+            
+            .container {
+                padding: 15px;
             }
             
             .main-content-row {
                 flex-direction: row;
                 align-items: flex-start;
-                gap: 30px;
-                margin-bottom: 30px;
+                gap: 25px;
+                margin-bottom: 20px;
             }
             
             .title-section {
                 width: 30%;
-                max-width: 300px;
+                max-width: 280px;
                 margin-bottom: 0;
                 text-align: center;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                padding: 25px 20px;
+                padding: 20px;
+                min-height: 450px;
             }
             
             .main-title {
-                font-size: 2.2rem;
-                padding: 15px 20px;
-                margin-bottom: 15px;
+                font-size: 1.9rem;
+                padding: 15px 18px;
+                margin-bottom: 10px;
             }
             
             .subtitle {
                 font-size: 1.3rem;
-                margin-bottom: 8px;
+                margin-bottom: 5px;
             }
             
             .tour-subtitle {
-                font-size: 1.1rem;
+                font-size: 1rem;
+            }
+            
+            .theme {
+                font-size: 1.4rem;
+                margin-top: 15px;
+                padding: 12px;
             }
             
             .content-section {
                 flex: 1;
-                gap: 25px;
+                gap: 20px;
             }
             
             .instructions {
-                padding: 25px;
+                padding: 22px;
                 text-align: left;
             }
             
             .instructions h2 {
-                font-size: 1.7rem;
+                font-size: 1.6rem;
                 text-align: left;
             }
             
             .instructions p {
-                font-size: 1.05rem;
+                font-size: 1rem;
+            }
+            
+            .share-ideas {
+                margin-top: 15px;
+            }
+            
+            .comparison-highlight {
+                font-size: 1.2rem;
+                text-align: left;
+                padding: 15px;
             }
             
             .language-buttons {
@@ -489,14 +1137,15 @@
             }
             
             .lang-btn {
-                width: 180px;
-                padding: 25px 20px;
+                width: 160px;
+                padding: 20px 18px;
             }
             
             .options-title {
-                font-size: 1.8rem;
+                font-size: 1.7rem;
                 text-align: left;
-                margin-bottom: 20px;
+                margin-bottom: 12px;
+                padding: 15px;
             }
             
             .form-options {
@@ -506,34 +1155,81 @@
             
             .option-card {
                 flex: 1;
-                padding: 25px;
+                padding: 22px;
+                min-height: 550px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .option-card .btn {
+                margin-top: auto;
+            }
+            
+            .option-type-box {
+                font-size: 1.6rem;
+                padding: 12px;
+                margin-bottom: 20px;
+            }
+            
+            .option-type-icon {
+                font-size: 1.8rem;
             }
             
             .option-card h3 {
-                font-size: 1.4rem;
+                font-size: 1.5rem;
+                min-height: 80px;
+            }
+            
+            .option-description {
+                font-size: 1.1rem;
+            }
+            
+            .option-highlight {
+                font-size: 1.05rem;
+                padding: 15px;
+            }
+            
+            .connection-status {
+                font-size: 1.05rem;
+                padding: 10px 20px;
+                max-width: 300px;
+            }
+            
+            .features {
+                padding: 20px;
+            }
+            
+            .btn {
+                padding: 18px 28px;
+                font-size: 1.2rem;
             }
             
             .contact-links {
                 flex-direction: row;
                 justify-content: center;
-                gap: 25px;
+                gap: 20px;
             }
             
             .contact-link {
                 width: auto;
-                min-width: 200px;
+                min-width: 170px;
+            }
+
+            .language-box {
+                max-width: 520px;
+                padding: 40px 35px;
             }
         }
         
         /* === VERSION TRÈS GRAND ÉCRAN === */
         @media (min-width: 1200px) {
             .flags-column {
-                width: 120px;
+                width: 90px;
             }
             
             .flags-column .flag {
-                width: 80px;
-                height: 50px;
+                width: 65px;
+                height: 45px;
             }
             
             .container {
@@ -542,24 +1238,32 @@
             
             .title-section {
                 width: 25%;
-                max-width: 280px;
+                max-width: 260px;
             }
             
             .main-title {
-                font-size: 2.5rem;
+                font-size: 2rem;
+            }
+            
+            .option-type-box {
+                font-size: 1.7rem;
+            }
+            
+            .btn {
+                padding: 20px 30px;
             }
         }
         
-        /* === VERSION MOBILE === */
-        @media (max-width: 767px) {
+        /* === VERSION MOBILE (jusqu'à 599px) === */
+        @media (max-width: 599px) {
             .title-section {
                 padding: 12px;
             }
             
             .main-title {
-                font-size: 1.8rem;
-                padding: 8px 12px;
-                margin-bottom: 5px;
+                font-size: 1.6rem;
+                padding: 10px 12px;
+                margin-bottom: 6px;
             }
             
             .subtitle {
@@ -569,6 +1273,118 @@
             
             .tour-subtitle {
                 font-size: 0.9rem;
+            }
+            
+            .theme {
+                font-size: 1rem;
+                margin-top: 8px;
+                padding: 8px;
+            }
+            
+            .share-ideas {
+                padding: 12px;
+            }
+            
+            .comparison-highlight {
+                font-size: 1rem;
+                padding: 10px;
+            }
+            
+            .option-type-box {
+                font-size: 1.3rem;
+                padding: 6px;
+                gap: 10px;
+            }
+            
+            .option-type-icon {
+                font-size: 1.4rem;
+            }
+            
+            .connection-status {
+                font-size: 0.95rem;
+                padding: 6px 12px;
+                max-width: 250px;
+            }
+            
+            .option-card h3 {
+                font-size: 1.3rem;
+                min-height: 60px;
+                padding: 8px 0;
+            }
+            
+            .option-description {
+                font-size: 1rem;
+            }
+            
+            .option-highlight {
+                font-size: 0.95rem;
+                padding: 10px;
+                margin: 12px 0;
+            }
+            
+            .features {
+                padding: 12px;
+            }
+            
+            .features-title {
+                font-size: 1rem;
+            }
+            
+            .feature {
+                font-size: 0.9rem;
+            }
+            
+            .btn {
+                padding: 12px 18px;
+                font-size: 1.05rem;
+            }
+            
+            .btn-icon {
+                margin-right: 8px;
+                font-size: 1.1rem;
+            }
+
+            .flower-decoration {
+                display: none;
+            }
+            
+            @media (max-width: 400px) {
+                .flags-column {
+                    width: 65px;
+                    padding: 15px 6px;
+                }
+                
+                .flags-column .flag {
+                    width: 40px;
+                    height: 30px;
+                    margin-bottom: 12px;
+                }
+
+                .idea-tag {
+                    font-size: 0.8rem;
+                    padding: 5px 10px;
+                }
+
+                .language-box {
+                    padding: 25px 20px;
+                }
+
+                .lang-btn {
+                    padding: 14px 16px;
+                }
+
+                .lang-btn span {
+                    font-size: 1.1rem;
+                }
+                
+                .option-type-box {
+                    font-size: 1.2rem;
+                    gap: 8px;
+                }
+                
+                .option-type-icon {
+                    font-size: 1.3rem;
+                }
             }
         }
         
@@ -593,12 +1409,69 @@
         }
         
         .flags-column .flag:nth-child(odd) {
-            animation: float 3s ease-in-out infinite;
+            animation: float 4s ease-in-out infinite;
         }
         
         .flags-column .flag:nth-child(even) {
-            animation: float 3s ease-in-out infinite reverse;
+            animation: float 4s ease-in-out infinite reverse;
             animation-delay: 0.5s;
+        }
+        
+        /* === ANIMATION D'ENTRÉE === */
+        @keyframes gentleAppear {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .language-box, .title-section, .instructions, .option-card, .contacts-section {
+            animation: gentleAppear 0.6s ease-out;
+        }
+
+        /* === ANIMATION DES FLEURS === */
+        @keyframes gentleSway {
+            0%, 100% { transform: rotate(-15deg) translateY(0); }
+            50% { transform: rotate(-15deg) translateY(-3px); }
+        }
+
+        @keyframes gentleSway2 {
+            0%, 100% { transform: rotate(20deg) translateY(0); }
+            50% { transform: rotate(20deg) translateY(-3px); }
+        }
+
+        @keyframes gentleSway3 {
+            0%, 100% { transform: rotate(10deg) translateY(0); }
+            50% { transform: rotate(10deg) translateY(-3px); }
+        }
+
+        @keyframes gentleSway4 {
+            0%, 100% { transform: rotate(-25deg) translateY(0); }
+            50% { transform: rotate(-25deg) translateY(-3px); }
+        }
+
+        .flower-1 {
+            animation: gentleSway 8s ease-in-out infinite;
+        }
+
+        .flower-2 {
+            animation: gentleSway2 9s ease-in-out infinite;
+        }
+
+        .flower-3 {
+            animation: gentleSway3 7s ease-in-out infinite;
+        }
+
+        .flower-4 {
+            animation: gentleSway4 10s ease-in-out infinite;
+        }
+        
+        /* === ANIMATION POUR LES OPTIONS === */
+        @keyframes pulseBorder {
+            0%, 100% { border-width: 3px; }
+            50% { border-width: 4px; }
+        }
+        
+        .option-type-box {
+            animation: pulseBorder 3s infinite;
         }
     </style>
 </head>
@@ -614,14 +1487,29 @@
         <img src="https://flagcdn.com/w80/no.png" alt="Norvège" class="flag" title="Norvège">
     </div>
 
+    <!-- Fleurs décoratives -->
+    <div class="flower-decoration flower-1">
+        <i class="fas fa-leaf"></i>
+    </div>
+    <div class="flower-decoration flower-2">
+        <i class="fas fa-seedling"></i>
+    </div>
+    <div class="flower-decoration flower-3">
+        <i class="fas fa-leaf"></i>
+    </div>
+    <div class="flower-decoration flower-4">
+        <i class="fas fa-seedling"></i>
+    </div>
+
     <!-- Contenu principal -->
     <div class="main-content">
         <!-- Écran de sélection de langue -->
         <section class="language-selector" id="languageSelector">
             <div class="language-box">
-                <h1>Guestbook / Livre d'Or</h1>
-                <p>Ny ako Madagascar - Europe Tour 2026</p>
-                <p>Please choose your language / Veuillez choisir votre langue :</p>
+                <h1>Livre d'Or / Guestbook</h1>
+                <p>Groupe Ny ako Madagascar</p>
+                <p>Tournée Europe 2026</p>
+                <p class="blessing">Que Dieu vous bénisse / God bless you</p>
                 <div class="language-buttons">
                     <a href="#" class="lang-btn" id="englishBtn">
                         <i class="fas fa-globe-europe"></i>
@@ -643,76 +1531,136 @@
                     <div class="title-section">
                         <h1 class="main-title">LIVRE D'OR</h1>
                         <p class="subtitle">Ny ako Madagascar</p>
-                        <p class="tour-subtitle">Tournée Européenne 2026</p>
+                        <p class="tour-subtitle">Tournée Europe 2026</p>
+                        <div class="cross-icon">✝</div>
+                        <div class="theme">"Nos sources sont en Toi"</div>
                     </div>
                     
                     <!-- Contenu à droite -->
                     <div class="content-section">
                         <section class="instructions">
-                            <h2>Laissez un message dans notre livre d'or !</h2>
-                            <p>Nous sommes en pleine tournée exceptionnelle en Europe en 2026 ! Partagez avec nous vos impressions sur les concerts, vos moments préférés et vos photos. Choisissez le formulaire qui vous convient le mieux. Merci de faire partie de cette aventure !</p>
+                            <h2>Partagez votre témoignage avec nous</h2>
+                            <p>Votre expérience, vos encouragements et vos prières sont précieux pour notre ministère. Chaque témoignage nous fortifie dans notre mission.</p>
+                            
+                            <div class="share-ideas">
+                                <h4><i class="fas fa-lightbulb"></i> Vous pouvez partager :</h4>
+                                <div class="ideas-list">
+                                    <span class="idea-tag">Votre expérience spirituelle</span>
+                                    <span class="idea-tag">Un moment touchant</span>
+                                    <span class="idea-tag">Un souvenir de réunion</span>
+                                    <span class="idea-tag">Une prière spéciale</span>
+                                    <span class="idea-tag">Un encouragement</span>
+                                    <span class="idea-tag">Un témoignage personnel</span>
+                                    <span class="idea-tag">Ce que Dieu a fait</span>
+                                    <span class="idea-tag">Vos impressions</span>
+                                </div>
+                            </div>
                         </section>
                         
                         <section class="form-section">
-                            <h2 class="options-title">Choisissez votre formulaire</h2>
+                            <h2 class="options-title">Choisissez comment partager</h2>
+                            
+                            <div class="comparison-highlight">
+                                ⚡ Choisissez entre <strong>sans connexion</strong> (rapide) ou <strong>avec photo</strong> (mémoire visuelle)
+                            </div>
                             
                             <div class="form-options">
                                 <!-- Option 1 - Sans photo -->
-                                <div class="option-card">
-                                    <div class="option-header">
-                                        <span class="language-badge">Français</span>
-                                        <span class="photo-badge no-photo">Sans photo</span>
+                                <div class="option-card no-photo-option">
+                                    <div class="corner-top-right"></div>
+                                    <div class="corner-bottom-left"></div>
+                                    <div class="option-type-box no-photo-type">
+                                        <i class="fas fa-comment-alt option-type-icon"></i>
+                                        <span>SANS PHOTO</span>
                                     </div>
-                                    <h3>Formulaire simple</h3>
-                                    <p>Partagez simplement un message sans télécharger de photo. Aucune connexion requise.</p>
+                                    
+                                    <div class="connection-status no-connection-required">
+                                        <i class="fas fa-wifi"></i> AUCUNE CONNEXION REQUISE
+                                    </div>
+                                    
+                                    <h3>Témoignage de foi (version simple)</h3>
+                                    
+                                    <p class="option-description">Partagez votre expérience spirituelle, vos prières ou vos encouragements par écrit.</p>
+                                    
+                                    <div class="option-highlight">
+                                        <strong>💡 Idéal pour :</strong> Un témoignage rapide, sans complication technique
+                                    </div>
+                                    
                                     <div class="features">
-                                        <div class="feature">
+                                        <div class="features-title">
                                             <i class="fas fa-check-circle"></i>
-                                            <span>Aucune connexion requise</span>
+                                            <span>Ce que cette option vous permet :</span>
                                         </div>
                                         <div class="feature">
-                                            <i class="fas fa-check-circle"></i>
-                                            <span>Rapide et simple</span>
+                                            <i class="fas fa-check"></i>
+                                            <span><strong>Sans connexion</strong> - Rapide et simple à utiliser</span>
                                         </div>
                                         <div class="feature">
-                                            <i class="fas fa-check-circle"></i>
-                                            <span>Possibilité de rester anonyme</span>
+                                            <i class="fas fa-check"></i>
+                                            <span><strong>Sans photo</strong> - Partagez juste votre message</span>
                                         </div>
                                         <div class="feature">
-                                            <i class="fas fa-check-circle"></i>
-                                            <span>Option pour partager vos coordonnées</span>
+                                            <i class="fas fa-check"></i>
+                                            <span><strong>Option</strong> : rester anonyme si vous préférez</span>
+                                        </div>
+                                        <div class="feature">
+                                            <i class="fas fa-check"></i>
+                                            <span><strong>Option</strong> : partager vos coordonnées pour rester en contact</span>
                                         </div>
                                     </div>
-                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSf6yaozp179sFPngu4Fz1aVPwp9tEnz-YwrV9lzQLkGUIX7MQ/viewform?usp=header" target="_blank" class="btn">Remplir ce formulaire</a>
+                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSf6yaozp179sFPngu4Fz1aVPwp9tEnz-YwrV9lzQLkGUIX7MQ/viewform?usp=header" target="_blank" class="btn no-photo-btn">
+                                        <i class="fas fa-pen-alt btn-icon"></i>
+                                        Partager mon témoignage
+                                    </a>
                                 </div>
                                 
                                 <!-- Option 2 - Avec photo -->
-                                <div class="option-card">
-                                    <div class="option-header">
-                                        <span class="language-badge">Français</span>
-                                        <span class="photo-badge">Avec photo</span>
+                                <div class="option-card with-photo-option">
+                                    <div class="corner-top-right"></div>
+                                    <div class="corner-bottom-left"></div>
+                                    <div class="option-type-box with-photo-type">
+                                        <i class="fas fa-camera option-type-icon"></i>
+                                        <span>AVEC PHOTO</span>
                                     </div>
-                                    <h3>Formulaire avec photo</h3>
-                                    <p>Partagez un message et une photo du concert ou d'un moment mémorable. Connexion Google nécessaire.</p>
+                                    
+                                    <div class="connection-status connection-required">
+                                        <i class="fas fa-sign-in-alt"></i> CONNEXION GOOGLE REQUISE
+                                    </div>
+                                    
+                                    <h3>Souvenir béni (version visuelle)</h3>
+                                    
+                                    <p class="option-description">Partagez un témoignage accompagné d'une photo de nos rencontres ou moments spirituels.</p>
+                                    
+                                    <div class="option-highlight">
+                                        <strong>📸 Parfait pour :</strong> Partager des souvenirs visuels de moments spéciaux
+                                    </div>
+                                    
                                     <div class="features">
-                                        <div class="feature">
+                                        <div class="features-title">
                                             <i class="fas fa-check-circle"></i>
-                                            <span>Nécessite une connexion Google</span>
+                                            <span>Ce que cette option vous permet :</span>
                                         </div>
                                         <div class="feature">
-                                            <i class="fas fa-check-circle"></i>
-                                            <span>Partagez vos photos des concerts</span>
+                                            <i class="fas fa-check"></i>
+                                            <span><strong>Avec photo</strong> - Ajoutez une image mémorable</span>
                                         </div>
                                         <div class="feature">
-                                            <i class="fas fa-check-circle"></i>
-                                            <span>Possibilité de rester anonyme</span>
+                                            <i class="fas fa-check"></i>
+                                            <span><strong>Connexion Google</strong> requise pour télécharger la photo</span>
                                         </div>
                                         <div class="feature">
-                                            <i class="fas fa-check-circle"></i>
-                                            <span>Option pour partager vos coordonnées</span>
+                                            <i class="fas fa-check"></i>
+                                            <span><strong>Option</strong> : rester anonyme si vous préférez</span>
+                                        </div>
+                                        <div class="feature">
+                                            <i class="fas fa-check"></i>
+                                            <span><strong>Option</strong> : partager vos coordonnées pour rester en contact</span>
                                         </div>
                                     </div>
-                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfrJKU6QpRFo8ni9RVDBPUo8H-Wi-rJzxDXHQNWxoeC2LxL0A/viewform?usp=header" target="_blank" class="btn">Remplir ce formulaire</a>
+                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfrJKU6QpRFo8ni9RVDBPUo8H-Wi-rJzxDXHQNWxoeC2LxL0A/viewform" target="_blank" class="btn with-photo-btn">
+                                        <i class="fas fa-camera btn-icon"></i>
+                                        Partager avec photo
+                                    </a>
                                 </div>
                             </div>
                         </section>
@@ -720,21 +1668,21 @@
                 </div>
                 
                 <div class="contacts-section">
-                    <h3>Contactez-nous</h3>
+                    <h3>Restons en contact</h3>
                     <div class="contact-links">
                         <a href="https://www.facebook.com/profile.php?id=100063569177456" target="_blank" class="contact-link">
                             <i class="fab fa-facebook"></i>
-                            <span>Facebook</span>
+                            <span>Page Facebook</span>
                         </a>
                         <a href="mailto:nyakotour26@gmail.com" class="contact-link">
                             <i class="fas fa-envelope"></i>
-                            <span>nyakotour26@gmail.com</span>
+                            <span>Pour la prière</span>
                         </a>
                     </div>
                 </div>
                 
                 <div class="back-link">
-                    <a href="#" id="backToSelectorFr">← Changer de langue / Change language</a>
+                    <a href="#" id="backToSelectorFr">← Changer de langue</a>
                 </div>
             </div>
         </section>
@@ -748,75 +1696,135 @@
                         <h1 class="main-title">GUESTBOOK</h1>
                         <p class="subtitle">Ny ako Madagascar</p>
                         <p class="tour-subtitle">Europe Tour 2026</p>
+                        <div class="cross-icon">✝</div>
+                        <div class="theme">"Our Source is in You"</div>
                     </div>
                     
                     <!-- Contenu à droite -->
                     <div class="content-section">
                         <section class="instructions">
-                            <h2>Leave a message in our guestbook!</h2>
-                            <p>We are currently on an exceptional tour across Europe in 2026! Share with us your thoughts on the concerts, your favorite moments, and your photos. Choose the form that suits you best. Thank you for being part of this adventure!</p>
+                            <h2>Share your testimony with us</h2>
+                            <p>Your experience, encouragements and prayers are valuable to our ministry. Each testimony strengthens us in our mission.</p>
+                            
+                            <div class="share-ideas">
+                                <h4><i class="fas fa-lightbulb"></i> You can share:</h4>
+                                <div class="ideas-list">
+                                    <span class="idea-tag">Your spiritual experience</span>
+                                    <span class="idea-tag">A touching moment</span>
+                                    <span class="idea-tag">A meeting memory</span>
+                                    <span class="idea-tag">A special prayer</span>
+                                    <span class="idea-tag">An encouragement</span>
+                                    <span class="idea-tag">A personal testimony</span>
+                                    <span class="idea-tag">What God has done</span>
+                                    <span class="idea-tag">Your impressions</span>
+                                </div>
+                            </div>
                         </section>
                         
                         <section class="form-section">
-                            <h2 class="options-title">Choose your form</h2>
+                            <h2 class="options-title">Choose how to share</h2>
+                            
+                            <div class="comparison-highlight">
+                                ⚡ Choose between <strong>no connection</strong> (quick) or <strong>with photo</strong> (visual memory)
+                            </div>
                             
                             <div class="form-options">
                                 <!-- Option 1 - Without photo -->
-                                <div class="option-card">
-                                    <div class="option-header">
-                                        <span class="language-badge">English</span>
-                                        <span class="photo-badge no-photo">No photo</span>
+                                <div class="option-card no-photo-option">
+                                    <div class="corner-top-right"></div>
+                                    <div class="corner-bottom-left"></div>
+                                    <div class="option-type-box no-photo-type">
+                                        <i class="fas fa-comment-alt option-type-icon"></i>
+                                        <span>NO PHOTO</span>
                                     </div>
-                                    <h3>Simple form</h3>
-                                    <p>Just share a message without uploading any photo. No connection required.</p>
+                                    
+                                    <div class="connection-status no-connection-required">
+                                        <i class="fas fa-wifi"></i> NO CONNECTION REQUIRED
+                                    </div>
+                                    
+                                    <h3>Faith Testimony (simple version)</h3>
+                                    
+                                    <p class="option-description">Share your spiritual experience, prayers or encouragements in writing.</p>
+                                    
+                                    <div class="option-highlight">
+                                        <strong>💡 Ideal for:</strong> A quick testimony, without technical complications
+                                    </div>
+                                    
                                     <div class="features">
-                                        <div class="feature">
+                                        <div class="features-title">
                                             <i class="fas fa-check-circle"></i>
-                                            <span>No connection required</span>
+                                            <span>What this option allows you to do:</span>
                                         </div>
                                         <div class="feature">
-                                            <i class="fas fa-check-circle"></i>
-                                            <span>Quick and simple</span>
+                                            <i class="fas fa-check"></i>
+                                            <span><strong>No connection</strong> - Quick and simple to use</span>
                                         </div>
                                         <div class="feature">
-                                            <i class="fas fa-check-circle"></i>
-                                            <span>Can remain anonymous</span>
+                                            <i class="fas fa-check"></i>
+                                            <span><strong>No photo</strong> - Just share your message</span>
                                         </div>
                                         <div class="feature">
-                                            <i class="fas fa-check-circle"></i>
-                                            <span>Option to share your contact details</span>
+                                            <i class="fas fa-check"></i>
+                                            <span><strong>Option</strong>: remain anonymous if you prefer</span>
+                                        </div>
+                                        <div class="feature">
+                                            <i class="fas fa-check"></i>
+                                            <span><strong>Option</strong>: share your contact details to stay in touch</span>
                                         </div>
                                     </div>
-                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSddniha6MImE833kx7YqoTlIw7uY64VAZjHb6adt64K1sFlrw/viewform?usp=header" target="_blank" class="btn">Fill this form</a>
+                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSddniha6MImE833kx7YqoTlIw7uY64VAZjHb6adt64K1sFlrw/viewform?usp=header" target="_blank" class="btn no-photo-btn">
+                                        <i class="fas fa-pen-alt btn-icon"></i>
+                                        Share my testimony
+                                    </a>
                                 </div>
                                 
                                 <!-- Option 2 - With photo -->
-                                <div class="option-card">
-                                    <div class="option-header">
-                                        <span class="language-badge">English</span>
-                                        <span class="photo-badge">With photo</span>
+                                <div class="option-card with-photo-option">
+                                    <div class="corner-top-right"></div>
+                                    <div class="corner-bottom-left"></div>
+                                    <div class="option-type-box with-photo-type">
+                                        <i class="fas fa-camera option-type-icon"></i>
+                                        <span>WITH PHOTO</span>
                                     </div>
-                                    <h3>Form with photo upload</h3>
-                                    <p>Share a message and a photo from the concert or a memorable moment. Google connection needed.</p>
+                                    
+                                    <div class="connection-status connection-required">
+                                        <i class="fas fa-sign-in-alt"></i> GOOGLE CONNECTION REQUIRED
+                                    </div>
+                                    
+                                    <h3>Blessed Memory (visual version)</h3>
+                                    
+                                    <p class="option-description">Share a testimony accompanied by a photo from our meetings or spiritual moments.</p>
+                                    
+                                    <div class="option-highlight">
+                                        <strong>📸 Perfect for:</strong> Sharing visual memories of special moments
+                                    </div>
+                                    
                                     <div class="features">
-                                        <div class="feature">
+                                        <div class="features-title">
                                             <i class="fas fa-check-circle"></i>
-                                            <span>Requires Google connection</span>
+                                            <span>What this option allows you to do:</span>
                                         </div>
                                         <div class="feature">
-                                            <i class="fas fa-check-circle"></i>
-                                            <span>Share your concert photos</span>
+                                            <i class="fas fa-check"></i>
+                                            <span><strong>With photo</strong> - Add a memorable image</span>
                                         </div>
                                         <div class="feature">
-                                            <i class="fas fa-check-circle"></i>
-                                            <span>Can remain anonymous</span>
+                                            <i class="fas fa-check"></i>
+                                            <span><strong>Google connection</strong> required to upload photo</span>
                                         </div>
                                         <div class="feature">
-                                            <i class="fas fa-check-circle"></i>
-                                            <span>Option to share your contact details</span>
+                                            <i class="fas fa-check"></i>
+                                            <span><strong>Option</strong>: remain anonymous if you prefer</span>
+                                        </div>
+                                        <div class="feature">
+                                            <i class="fas fa-check"></i>
+                                            <span><strong>Option</strong>: share your contact details to stay in touch</span>
                                         </div>
                                     </div>
-                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe_SQ6xObVzDfX4r68kCo3RiwXpKpeH3lwa_6DoGgJUSprAw/viewform?usp=header" target="_blank" class="btn">Fill this form</a>
+                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe_SQ6xObVzDfX4r68kCo3RiwXpKpeH3lwa_6DoGgJUSprAw/viewform?usp=header" target="_blank" class="btn with-photo-btn">
+                                        <i class="fas fa-camera btn-icon"></i>
+                                        Share with photo
+                                    </a>
                                 </div>
                             </div>
                         </section>
@@ -824,21 +1832,21 @@
                 </div>
                 
                 <div class="contacts-section">
-                    <h3>Contact us</h3>
+                    <h3>Stay in touch</h3>
                     <div class="contact-links">
                         <a href="https://www.facebook.com/profile.php?id=100063569177456" target="_blank" class="contact-link">
                             <i class="fab fa-facebook"></i>
-                            <span>Facebook</span>
+                            <span>Facebook Page</span>
                         </a>
                         <a href="mailto:nyakotour26@gmail.com" class="contact-link">
                             <i class="fas fa-envelope"></i>
-                            <span>nyakotour26@gmail.com</span>
+                            <span>For prayer</span>
                         </a>
                     </div>
                 </div>
                 
                 <div class="back-link">
-                    <a href="#" id="backToSelectorEn">← Change language / Changer de langue</a>
+                    <a href="#" id="backToSelectorEn">← Change language</a>
                 </div>
             </div>
         </section>
@@ -911,7 +1919,7 @@
             languageSelector.style.display = 'flex';
             frenchPage.style.display = 'none';
             englishPage.style.display = 'none';
-            document.title = "Guestbook / Livre d'Or - Ny ako Madagascar Europe Tour 2026";
+            document.title = "Livre d'Or / Guestbook - Ny ako Madagascar Europe Tour 2026";
         }
     </script>
 </body>
