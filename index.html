@@ -1256,19 +1256,90 @@
         
         /* === VERSION MOBILE (jusqu'à 599px) === */
         @media (max-width: 599px) {
+            /* MODIFICATION: Adaptation mobile complète */
+            body {
+                flex-direction: column;
+            }
+            
+            .flags-column {
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                justify-content: center;
+                padding: 10px 5px;
+                border-right: none;
+                border-bottom: 2px solid #FFD700;
+                max-height: 100px; /* Limite la hauteur à celle du titre */
+                overflow: hidden;
+                position: relative;
+                z-index: 3;
+            }
+            
+            .flags-column::before {
+                background: linear-gradient(to right, rgba(139, 69, 19, 0.9), rgba(210, 105, 30, 0.9));
+                opacity: 1;
+            }
+            
+            .flags-column .flag {
+                width: 40px;
+                height: 30px;
+                margin-bottom: 0;
+                margin-right: 8px;
+                flex-shrink: 0;
+            }
+            
+            .flags-column .flag:last-child {
+                margin-right: 0;
+            }
+            
+            /* Arrête l'animation des drapeaux en mobile pour économiser la batterie */
+            .flags-column .flag {
+                animation: none;
+            }
+            
+            .main-content {
+                width: 100%;
+                padding: 10px;
+            }
+            
+            .main-content-row {
+                width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+            }
+            
+            .container {
+                width: 100%;
+                max-width: 100%;
+                padding: 10px;
+            }
+            
+            .title-section,
+            .instructions,
+            .form-section,
+            .contacts-section,
+            .option-card,
+            .comparison-highlight {
+                width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+            }
+            
             .title-section {
-                padding: 12px;
+                padding: 15px;
+                margin-top: 10px;
+                margin-bottom: 15px;
             }
             
             .main-title {
                 font-size: 1.6rem;
-                padding: 10px 12px;
-                margin-bottom: 6px;
+                padding: 12px 15px;
+                width: 100%;
+                text-align: center;
             }
             
             .subtitle {
                 font-size: 1.1rem;
-                margin-bottom: 3px;
             }
             
             .tour-subtitle {
@@ -1277,53 +1348,83 @@
             
             .theme {
                 font-size: 1rem;
-                margin-top: 8px;
                 padding: 8px;
+                text-align: center;
             }
             
-            .share-ideas {
+            .instructions {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .instructions h2 {
+                font-size: 1.4rem;
+                text-align: center;
+            }
+            
+            .form-section {
+                width: 100%;
+            }
+            
+            .options-title {
+                font-size: 1.4rem;
                 padding: 12px;
+                text-align: center;
+                width: 100%;
             }
             
             .comparison-highlight {
                 font-size: 1rem;
                 padding: 10px;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 15px;
+            }
+            
+            .form-options {
+                width: 100%;
+                gap: 15px;
+            }
+            
+            .option-card {
+                width: 100%;
+                padding: 15px;
+                margin-bottom: 0;
             }
             
             .option-type-box {
                 font-size: 1.3rem;
-                padding: 6px;
-                gap: 10px;
-            }
-            
-            .option-type-icon {
-                font-size: 1.4rem;
+                padding: 8px;
+                width: 100%;
             }
             
             .connection-status {
-                font-size: 0.95rem;
-                padding: 6px 12px;
-                max-width: 250px;
+                font-size: 0.9rem;
+                padding: 8px 12px;
+                width: 90%;
             }
             
             .option-card h3 {
                 font-size: 1.3rem;
-                min-height: 60px;
+                min-height: auto;
                 padding: 8px 0;
+                text-align: center;
             }
             
             .option-description {
                 font-size: 1rem;
+                padding: 0 5px;
             }
             
             .option-highlight {
                 font-size: 0.95rem;
                 padding: 10px;
-                margin: 12px 0;
+                margin: 10px 0;
             }
             
             .features {
                 padding: 12px;
+                width: 100%;
             }
             
             .features-title {
@@ -1335,55 +1436,112 @@
             }
             
             .btn {
-                padding: 12px 18px;
+                width: 100%;
+                padding: 12px 20px;
                 font-size: 1.05rem;
             }
             
-            .btn-icon {
-                margin-right: 8px;
-                font-size: 1.1rem;
+            .contacts-section {
+                width: 100%;
+                padding: 15px;
+                margin: 15px 0;
             }
-
+            
+            .contact-links {
+                width: 100%;
+            }
+            
+            .contact-link {
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .back-link {
+                width: 100%;
+                margin-top: 10px;
+            }
+            
+            .back-link a {
+                width: 100%;
+                text-align: center;
+            }
+            
+            /* Fleurs décoratives cachées en mobile */
             .flower-decoration {
                 display: none;
             }
             
+            /* Écran de sélection de langue en mobile */
+            .language-selector {
+                padding: 10px;
+                width: 100%;
+            }
+            
+            .language-box {
+                width: 100%;
+                max-width: 100%;
+                padding: 25px 20px;
+            }
+            
+            .lang-btn {
+                width: 100%;
+                padding: 15px;
+            }
+            
+            /* Ajustements supplémentaires pour très petits écrans */
             @media (max-width: 400px) {
                 .flags-column {
-                    width: 65px;
-                    padding: 15px 6px;
+                    max-height: 80px;
+                    padding: 8px 5px;
                 }
                 
                 .flags-column .flag {
-                    width: 40px;
-                    height: 30px;
-                    margin-bottom: 12px;
+                    width: 35px;
+                    height: 25px;
+                    margin-right: 5px;
                 }
-
-                .idea-tag {
-                    font-size: 0.8rem;
-                    padding: 5px 10px;
-                }
-
-                .language-box {
-                    padding: 25px 20px;
-                }
-
-                .lang-btn {
-                    padding: 14px 16px;
-                }
-
-                .lang-btn span {
-                    font-size: 1.1rem;
+                
+                .main-title {
+                    font-size: 1.4rem;
+                    padding: 10px 12px;
                 }
                 
                 .option-type-box {
                     font-size: 1.2rem;
-                    gap: 8px;
+                    padding: 6px;
                 }
                 
                 .option-type-icon {
+                    font-size: 1.2rem;
+                }
+                
+                .idea-tag {
+                    font-size: 0.8rem;
+                    padding: 5px 8px;
+                }
+            }
+            
+            @media (max-width: 350px) {
+                .flags-column {
+                    max-height: 70px;
+                }
+                
+                .flags-column .flag {
+                    width: 30px;
+                    height: 22px;
+                    margin-right: 4px;
+                }
+                
+                .main-title {
                     font-size: 1.3rem;
+                }
+                
+                .subtitle {
+                    font-size: 1rem;
+                }
+                
+                .theme {
+                    font-size: 0.9rem;
                 }
             }
         }
